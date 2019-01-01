@@ -7,13 +7,19 @@ from sqlalchemy.sql.expression import func
 from create_db import Base, File
 
 
+# set here which round of revisits you're on
+REVISITS = 0
+
 engine = sa.create_engine('sqlite:///revisit.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+# increments after the first round of revisits is done, to step you into the next round
+if session.query(File).filter_by(revisits=REVISITS).count() == 0:
+    REVISITS += 1
 
-check = session.query(File).filter_by(revisits=0).order_by(func.random()).first()
+check = session.query(File).filter_by(revisits=REVISITS).order_by(func.random()).first()
 # note that we revisited this file, and when
 check.last_revisit = datetime.datetime.now()
 check.revisits += 1
