@@ -67,6 +67,7 @@ a random node project - but maybe you _do_ want to revisit those!).
 Otherwise, what you can always do is:
 
 ![home organization - just give up](https://imgs.xkcd.com/comics/home_organization.png)
+
 [_xkcd 1077 - Home Organization_](https://xkcd.com/1077/)
 
 Only that we're already in the digital realm...
