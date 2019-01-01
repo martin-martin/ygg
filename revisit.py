@@ -1,5 +1,5 @@
 import os
-import code
+#import code
 import datetime
 import sqlalchemy as sa
 from sqlalchemy.orm import sessionmaker
@@ -31,4 +31,4 @@ session.commit()  # save changes to db
 # open up the current file to revisit in suitable program
 os.system('open {0}'.format(check.path))
 
-code.interact(local=locals())
+#code.interact(local=locals())

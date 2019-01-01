@@ -10,12 +10,12 @@ class File(Base):
 
     __tablename__ = "files"
 
-    # use BigInteger for Postgres, but doesn't work for SQLite
+    # you can use BigInteger for Postgres, but it doesn't work together with auto-increment in SQLite
     id = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
     type = sa.Column(sa.String, nullable=True, index=True)
     name = sa.Column(sa.String, nullable=True)
     path = sa.Column(sa.String, nullable=False, unique=True)
-    # default is my birthday :)
+    # default is my birthday :) - change to whatever you want, e.g.: datetime.datetime(1970, 1, 1)
     last_revisit = sa.Column(sa.DateTime, nullable=True, default=datetime.datetime(1987, 1, 15), index=True)
     revisits = sa.Column(sa.Integer, default=0, index=True)
 
@@ -26,6 +26,5 @@ class File(Base):
 # Create an engine that stores data in the local directory's .db file.
 engine = sa.create_engine('sqlite:///revisit.db')
 
-# Create all tables in the engine. This is equivalent to "Create Table"
-# statements in raw SQL.
+# Create all tables in the engine. This is equivalent to "Create Table" statements in raw SQL.
 Base.metadata.create_all(engine)
